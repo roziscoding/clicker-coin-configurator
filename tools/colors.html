@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLICKER·COIN — Palette Picker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0c10;
+        --panel: #0c0f15;
+        --panel-2: #10141c;
+        --ink: #ece7d8;
+        --ink-dim: #9aa1ad;
+        --muted: #5f6776;
+        --line: #1a2029;
+        --line-bright: #283140;
+        --amber: #ffb020;
+        --amber-bright: #ffc658;
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        color: var(--ink);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            120% 80% at 0% 0%,
+            rgba(255, 176, 32, 0.05),
+            transparent 55%
+          ),
+          var(--bg);
+        padding: 40px 32px 64px;
+      }
+      header {
+        max-width: 1180px;
+        margin: 0 auto 30px;
+        position: relative;
+      }
+      .tag {
+        font-size: 10.5px;
+        letter-spacing: 0.2em;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      h1 {
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin: 0;
+      }
+      h1 span {
+        color: var(--amber);
+      }
+      header p {
+        color: var(--ink-dim);
+        font-size: 12.5px;
+        letter-spacing: 0.04em;
+        margin: 10px 0 0;
+        max-width: 640px;
+        line-height: 1.6;
+      }
+      .grid {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        position: relative;
+        background: linear-gradient(180deg, var(--panel-2), var(--panel) 120px);
+        border: 1px solid var(--line-bright);
+        border-radius: 8px;
+        padding: 20px 20px 22px;
+        overflow: hidden;
+      }
+      .brk {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border: solid var(--amber);
+        opacity: 0.7;
+      }
+      .brk.tl {
+        top: 9px;
+        left: 9px;
+        border-width: 1px 0 0 1px;
+      }
+      .brk.tr {
+        top: 9px;
+        right: 9px;
+        border-width: 1px 1px 0 0;
+      }
+      .card-head {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 4px;
+      }
+      .idx {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--amber);
+        background: rgba(255, 176, 32, 0.08);
+        border: 1px solid rgba(255, 176, 32, 0.25);
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+      .card h2 {
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      .vibe {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        margin: 0 0 16px;
+      }
+      .preview {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .coin {
+        flex: none;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.5));
+      }
+      .swatches {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .sw {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+      }
+      .chip {
+        width: 26px;
+        height: 18px;
+        border-radius: 4px;
+        flex: none;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      }
+      .sw .k {
+        color: var(--ink-dim);
+        width: 58px;
+      }
+      .sw .hex {
+        color: var(--muted);
+        margin-left: auto;
+        font-size: 10.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="tag">MODEL NO. FTC-V2 · COLORWAY PREVIEW</div>
+      <h1>CLICKER<span>·</span>COIN — PALETTES</h1>
+      <p>
+        Each colorway shown on the real console background, with a gear preview:
+        outer ring = WHEEL, cap ring = TOP, center = CLICKER, backing = BOTTOM.
+        Tell me the number (or name) you like and I'll apply it to the app.
+      </p>
+    </header>
+
+    <div class="grid" id="grid"></div>
+
+    <script>
+      const PALETTES = [
+        {
+          name: 'Cyberdeck',
+          vibe: 'neon on charcoal · high energy',
+          top: '#ff5d6c',
+          wheel: '#2fe0c4',
+          clicker: '#ffb020',
+          bottom: '#8b7bff',
+        },
+        {
+          name: 'Blueprint',
+          vibe: 'cool cyans · one warm amber pop',
+          top: '#57c4ff',
+          wheel: '#8aa0ff',
+          clicker: '#ffb020',
+          bottom: '#4a6580',
+        },
+        {
+          name: 'Foundry',
+          vibe: 'forge heat · warm metals',
+          top: '#ff7a33',
+          wheel: '#ffce4d',
+          clicker: '#ff5347',
+          bottom: '#a9621f',
+        },
+        {
+          name: 'Terminal',
+          vibe: 'CRT phosphor · playful, distinct',
+          top: '#54e08a',
+          wheel: '#4fd6ff',
+          clicker: '#ffb020',
+          bottom: '#ff5db0',
+        },
+        {
+          name: 'Synthwave',
+          vibe: 'sunset gradient · retro-futuristic',
+          top: '#ff6ec7',
+          wheel: '#8b5cf6',
+          clicker: '#ffd23f',
+          bottom: '#3a86ff',
+        },
+        {
+          name: 'Ember',
+          vibe: 'muted earthen · soft & cohesive',
+          top: '#d98c5f',
+          wheel: '#7fa8a0',
+          clicker: '#ffb020',
+          bottom: '#9a7b9e',
+        },
+        {
+          name: 'Hazard',
+          vibe: 'industrial signage · bold contrast',
+          top: '#ffb020',
+          wheel: '#e8e4d8',
+          clicker: '#ff5630',
+          bottom: '#3d4754',
+        },
+        {
+          name: 'Deep Sea',
+          vibe: 'jewel tones · refined & moody',
+          top: '#2dd4bf',
+          wheel: '#38bdf8',
+          clicker: '#fbbf24',
+          bottom: '#6366f1',
+        },
+      ]
+
+      // Build a simple gear SVG: outer cog (wheel), cap ring (top),
+      // center button (clicker), rounded backing plate (bottom).
+      function coin(p) {
+        const cx = 60,
+          cy = 60,
+          R = 46,
+          teeth = 14,
+          tw = 9,
+          th = 11
+        const ns = 'http://www.w3.org/2000/svg'
+        const svg = document.createElementNS(ns, 'svg')
+        svg.setAttribute('class', 'coin')
+        svg.setAttribute('width', '120')
+        svg.setAttribute('height', '120')
+        svg.setAttribute('viewBox', '0 0 120 120')
+
+        // backing plate (bottom)
+        const plate = document.createElementNS(ns, 'rect')
+        plate.setAttribute('x', 12)
+        plate.setAttribute('y', 12)
+        plate.setAttribute('width', 96)
+        plate.setAttribute('height', 96)
+        plate.setAttribute('rx', 16)
+        plate.setAttribute('fill', p.bottom)
+        plate.setAttribute('opacity', '0.9')
+        svg.appendChild(plate)
+
+        // teeth (wheel)
+        for (let i = 0; i < teeth; i++) {
+          const a = (i / teeth) * Math.PI * 2
+          const t = document.createElementNS(ns, 'rect')
+          t.setAttribute('x', cx - tw / 2)
+          t.setAttribute('y', cy - R - th / 2)
+          t.setAttribute('width', tw)
+          t.setAttribute('height', th)
+          t.setAttribute('rx', 2)
+          t.setAttribute('fill', p.wheel)
+          t.setAttribute(
+            'transform',
+            `rotate(${(a * 180) / Math.PI} ${cx} ${cy})`,
+          )
+          svg.appendChild(t)
+        }
+        // wheel body
+        const wheel = document.createElementNS(ns, 'circle')
+        wheel.setAttribute('cx', cx)
+        wheel.setAttribute('cy', cy)
+        wheel.setAttribute('r', R - 3)
+        wheel.setAttribute('fill', p.wheel)
+        svg.appendChild(wheel)
+
+        // cap ring (top)
+        const cap = document.createElementNS(ns, 'circle')
+        cap.setAttribute('cx', cx)
+        cap.setAttribute('cy', cy)
+        cap.setAttribute('r', 30)
+        cap.setAttribute('fill', 'none')
+        cap.setAttribute('stroke', p.top)
+        cap.setAttribute('stroke-width', 11)
+        svg.appendChild(cap)
+
+        // center button (clicker)
+        const btn = document.createElementNS(ns, 'circle')
+        btn.setAttribute('cx', cx)
+        btn.setAttribute('cy', cy)
+        btn.setAttribute('r', 18)
+        btn.setAttribute('fill', p.clicker)
+        svg.appendChild(btn)
+
+        return svg
+      }
+
+      const PARTS = [
+        ['TOP', 'top'],
+        ['WHEEL', 'wheel'],
+        ['CLICKER', 'clicker'],
+        ['BOTTOM', 'bottom'],
+      ]
+
+      const grid = document.getElementById('grid')
+      PALETTES.forEach((p, i) => {
+        const card = document.createElement('div')
+        card.className = 'card'
+        card.innerHTML = `
+          <span class="brk tl"></span><span class="brk tr"></span>
+          <div class="card-head">
+            <span class="idx">${String(i + 1).padStart(2, '0')}</span>
+            <h2>${p.name}</h2>
+          </div>
+          <p class="vibe">${p.vibe}</p>
+          <div class="preview">
+            <div class="coin-slot"></div>
+            <div class="swatches">
+              ${PARTS.map(
+                ([label, key]) => `
+                <div class="sw">
+                  <span class="chip" style="background:${p[key]}"></span>
+                  <span class="k">${label}</span>
+                  <span class="hex">${p[key].toUpperCase()}</span>
+                </div>`,
+              ).join('')}
+            </div>
+          </div>`
+        card.querySelector('.coin-slot').replaceWith(coin(p))
+        grid.appendChild(card)
+      })
+    </script>
+  </body>
+</html>

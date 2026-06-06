@@ -1,0 +1,37 @@
+:root {
+  --bg: #0a0c10;
+  --panel: #0c0f15;
+  --panel-2: #10141c;
+  --ink: #ece7d8;
+  --ink-dim: #9aa1ad;
+  --muted: #5f6776;
+  --line: #1a2029;
+  --line-bright: #283140;
+  --amber: #ffb020;
+  --amber-bright: #ffc658;
+  --amber-deep: #c47a08;
+
+  font-family:
+    'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--amber);
+  color: #0a0c10;
+}

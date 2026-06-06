@@ -1,0 +1,44 @@
+# Task runner + tooling for the Clicker Coin configurator.
+# https://mise.jdx.dev/
+
+[tools]
+bun = "latest"
+
+[tasks.dev]
+description = "Start the Vite dev server"
+run = "bunx vite"
+
+[tasks.build]
+description = "Build the production bundle into dist/"
+run = "bunx vite build"
+
+[tasks.preview]
+description = "Preview the production build"
+run = "bunx vite preview"
+
+[tasks.test]
+description = "Run unit tests (Vitest)"
+run = "bunx vitest run"
+
+[tasks.typecheck]
+description = "Type-check Svelte + TS (svelte-check)"
+run = "bunx svelte-check --tsconfig ./tsconfig.json --threshold error"
+
+[tasks.lint]
+description = "Check formatting (Prettier)"
+run = "bunx prettier --check ."
+
+[tasks.format]
+description = "Auto-format the codebase (Prettier)"
+run = "bunx prettier --write ."
+
+[tasks.extract]
+description = "Copy STLs from a downloaded Printables zip into the app"
+usage = '''
+arg "<zip>" help="Path to the Printables model archive (.zip)"
+'''
+run = "./extract.sh {{arg(name='zip')}}"
+
+[tasks.deps]
+description = "Install JS dependencies"
+run = "bun install"
