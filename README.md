@@ -4,12 +4,15 @@ A web-based 3D configurator for the **Fidget Toy Clicker Coin v2** — mix and
 match the printable parts (top, wheel, clicker, bottom) and see them assembled
 in real time before you print.
 
+**▶ Live demo: <http://about.rjmunhoz.me/clicker-coin-configurator/>**
+
 ![Screenshot of the configurator](docs/screenshot.png)
 
 > [!IMPORTANT]
-> This is an **unofficial fan-made viewer**. It does **not** include or
-> redistribute any STL files. The 3D model is the work of **[Tranch]** and is
-> available on Printables — see [Credits & license](#credits--license).
+> This is an **unofficial fan-made viewer**. The 3D model is the work of
+> **[Tranch]** — see [Credits & license](#credits--license). The STL files are
+> not stored in this repo; the live demo pulls them from Printables at build
+> time, and locally you fetch them yourself (see below).
 
 ## What it is
 
@@ -109,13 +112,14 @@ Designed by **[Tranch]** and published on Printables:
 <https://www.printables.com/model/1614520-fidget-toy-clicker-coin-v2>
 
 The model is licensed **Creative Commons — Attribution–NonCommercial
-([CC BY-NC 4.0])**. That means: attribution required, remixing allowed,
-**no commercial use**. This project does not redistribute the STL files; it only
-helps you visualize them and points you to the official source to download.
+([CC BY-NC 4.0])**: attribution required, remixing allowed, **no commercial
+use**. This configurator is a non-commercial, attributed tool. The STLs aren't
+committed to this repo — the live demo fetches them from Printables at build
+time, and the in-app **Download** button always points back to the source so
+you can grab the files (and ❤ the model) there to actually print it.
 
-All credit for the physical design goes to Tranch. This configurator is an
-independent, non-commercial tool and is not affiliated with or endorsed by the
-designer.
+All credit for the physical design goes to Tranch. This project is independent
+and not affiliated with or endorsed by the designer.
 
 **Configurator code** in this repository is separate from the model. If you
 remix or reuse it, please keep the attribution to the original model intact.
