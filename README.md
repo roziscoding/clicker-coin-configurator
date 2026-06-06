@@ -10,9 +10,9 @@ in real time before you print.
 
 > [!IMPORTANT]
 > This is an **unofficial fan-made viewer**. The 3D model is the work of
-> **[Tranch]** — see [Credits & license](#credits--license). The STL files are
-> not stored in this repo; the live demo pulls them from Printables at build
-> time, and locally you fetch them yourself (see below).
+> **[Tranch]**, included here under CC BY-NC with attribution — see
+> [Credits & license](#credits--license). To actually print it, download from
+> Printables (and ❤ the model to support the maker).
 
 ## What it is
 
@@ -36,34 +36,30 @@ decide what to print without slicing every option.
 - **Download helper** — lists exactly which files your build needs, grouped by
   their Printables folder, and links you to the source to download them.
 
-## Getting the STL files
-
-The models aren't bundled here. Grab them first:
-
-1. Open the model on Printables and download the archive:
-   <https://www.printables.com/model/1614520-fidget-toy-clicker-coin-v2/files>
-   (and consider giving it a ❤ to support the maker).
-2. Drop the parts into the viewer with the helper script:
-
-   ```bash
-   mise extract ~/Downloads/fidget-toy-clicker-coin-v2.zip
-   ```
-
-   This extracts the archive, copies every `.stl` into `public/models/`,
-   checks all 18 expected parts are present, and cleans up after itself.
-   (You can also run `./extract.sh <zip>` directly.)
-
 ## Quick start
 
 Requires [mise](https://mise.jdx.dev/) (which provides Bun) — or just use Bun
 directly.
 
 ```bash
-mise install        # install Bun via mise (the tools in mise.toml)
-mise deps           # install JS dependencies
-mise extract <zip>  # populate the STLs (see above)
-mise dev            # start the dev server → http://localhost:5173
+mise install   # install Bun via mise (the tools in mise.toml)
+mise deps      # install JS dependencies
+mise dev       # start the dev server → http://localhost:5173
 ```
+
+The STL parts are included under `public/models/`, so it runs out of the box.
+
+### Refreshing the models (optional)
+
+If Tranch updates the model, re-sync the STLs from a fresh Printables download:
+
+```bash
+mise extract ~/Downloads/fidget-toy-clicker-coin-v2.zip
+```
+
+This extracts the archive, copies every `.stl` into `public/models/`, and
+checks all 18 expected parts are present. (You can also run `./extract.sh <zip>`
+directly.)
 
 ### Tasks
 
@@ -85,7 +81,7 @@ mise dev            # start the dev server → http://localhost:5173
 ├── mise.toml             # task runner + tooling
 ├── docs/                 # screenshots
 ├── tools/colors.html     # standalone palette-picker used during design
-├── public/models/        # STLs land here (git-ignored, not redistributed)
+├── public/models/        # the STL parts (by Tranch, see license)
 └── src/
     ├── App.svelte        # control panel + HUD
     ├── app.css
@@ -113,10 +109,10 @@ Designed by **[Tranch]** and published on Printables:
 
 The model is licensed **Creative Commons — Attribution–NonCommercial
 ([CC BY-NC 4.0])**: attribution required, remixing allowed, **no commercial
-use**. This configurator is a non-commercial, attributed tool. The STLs aren't
-committed to this repo — the live demo fetches them from Printables at build
-time, and the in-app **Download** button always points back to the source so
-you can grab the files (and ❤ the model) there to actually print it.
+use**. The STLs under `public/models/` are Tranch's work, included here with
+attribution for this non-commercial viewer. The in-app **Download** button
+points back to Printables so you can grab the files there (and ❤ the model) to
+actually print it.
 
 All credit for the physical design goes to Tranch. This project is independent
 and not affiliated with or endorsed by the designer.

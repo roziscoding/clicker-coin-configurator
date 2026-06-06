@@ -27,20 +27,6 @@ jobs:
 
       - run: bun install --frozen-lockfile
 
-      # Fetch the model archive from Printables at build time (not stored in the
-      # repo). MODELS_ZIP_URL is a repo Actions variable — update it if the
-      # Printables CDN link ever rotates.
-      - name: Fetch models from Printables
-        run: |
-          if [ -z "${{ vars.MODELS_ZIP_URL }}" ]; then
-            echo "::error::MODELS_ZIP_URL repo variable is not set." && exit 1
-          fi
-          curl -fsSL --retry 3 --retry-all-errors \
-            -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" \
-            -H "Accept: */*" \
-            "${{ vars.MODELS_ZIP_URL }}" -o /tmp/models.zip
-          ./extract.sh /tmp/models.zip
-
       - run: bunx vite build
 
       - uses: actions/configure-pages@v5

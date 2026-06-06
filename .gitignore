@@ -4,10 +4,7 @@ node_modules/
 # Build output
 dist/
 
-# 3D model files — NOT redistributed (CC BY-NC, see README).
-# Download from Printables and run `mise extract <zip>` to populate these.
-public/models/*
-!public/models/.gitkeep
+# Downloaded archives
 *.zip
 *.pdf
 
